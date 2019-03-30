@@ -4,23 +4,23 @@ import {
   createBottomTabNavigator,
   createStackNavigator,
   createAppContainer } from 'react-navigation'
-import DeckMain from '../components/DeckMain'
-import DeckDetail from '../components/DeckDetail'
-import AddEntry from '../components/AddEntry'
-import AddQuestion from '../components/AddQuestion'
-import QuizMain from '../components/QuizMain'
+import CardDeckMain from '../components/CardDeckMain'
+import CardDeckDetail from '../components/CardDeckDetail'
+import AddDeck from '../components/AddDeck'
+import AddCardQuestion from '../components/AddCardQuestion'
+import CardQuiz from '../components/CardQuiz'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 
 const Tabs = createBottomTabNavigator({
   Decks: {
-    screen: DeckMain,
+    screen: CardDeckMain,
     navigationOptions: {
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name="cards-outline" size={30} color={tintColor} />,
     },
   },
-  AddEntry: {
-    screen: AddEntry,
+  AddDeck: {
+    screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'New Deck',
       tabBarIcon: ({ tintColor }) => <Ionicons name="md-add-circle-outline" size={30} color={tintColor} />,
@@ -33,38 +33,38 @@ const MainNavigator = createStackNavigator({
     screen: Tabs,
     navigationOptions: {
       title: 'Flash Cards',
-      headerTintColor: 'white',
+      headerTintColor: '#FBFBFF',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#01BAEF',
       },
     },
   },
-  DeckDetail: {
-    screen: DeckDetail,
+  CardDeckDetail: {
+    screen: CardDeckDetail,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: '#FBFBFF',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#01BAEF',
 
       },
     },
   },
-  AddQuestion: {
-    screen: AddQuestion,
+  AddCardQuestion: {
+    screen: AddCardQuestion,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: '#FBFBFF',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#01BAEF',
 
       },
     },
   },
-  QuizMain: {
-    screen: QuizMain,
+  CardQuiz: {
+    screen: CardQuiz,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: '#FBFBFF',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#01BAEF',
 
       },
     },

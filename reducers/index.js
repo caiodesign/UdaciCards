@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import DeckReducer from './DeckReducer'
-import DeckDetailReducer from './DeckDetailReducer'
+import CardDeckReducer from './CardDeckReducer'
+import CardDeckDetailReducer from './CardDeckDetailReducer'
 
 export default combineReducers({
-  decks: DeckReducer,
-  deckDetail: DeckDetailReducer,
+  decks: CardDeckReducer,
+  CardDeckDetail: CardDeckDetailReducer,
 })
