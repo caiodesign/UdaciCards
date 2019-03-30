@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
@@ -9,19 +10,19 @@ class CardDeckDetail extends PureComponent {
   static navigationOptions = ({ navigation }) => navigation.state.params.navTitle
 
   componentDidMount() {
-    const { getCardDeckDetails, navigation } = this.props
-    getCardDeckDetails(navigation.state.params.entryId)
+    const { getCardDeckDetails: getDeck, navigation } = this.props
+    getDeck(navigation.state.params.entryId)
   }
 
   componentDidUpdate() {
-    const { getCardDeckDetails, navigation } = this.props
-    getCardDeckDetails(navigation.state.params.entryId)
+    const { getCardDeckDetails: getDeck, navigation } = this.props
+    getDeck(navigation.state.params.entryId)
   }
 
   deleteItem() {
-    const { title, deleteDeck, navigation } = this.props
+    const { title, deleteDeck: delDeck, navigation } = this.props
 
-    deleteDeck(title)
+    delDeck(title)
     navigation.goBack()
   }
 

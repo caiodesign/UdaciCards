@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {
@@ -20,15 +21,15 @@ const styles = {
 class CardDeckList extends PureComponent {
 
   componentDidMount() {
-    const { fetchDeckDB } = this.props
+    const { fetchDeckDB: getDeckDb } = this.props
 
-    return fetchDeckDB()
+    return getDeckDb()
   }
 
   componentDidUpdate() {
-    const { fetchDeckDB } = this.props
+    const { fetchDeckDB: getDeckDb } = this.props
 
-    return fetchDeckDB()
+    return getDeckDb()
   }
 
   renderItem = ({ item }) => {
