@@ -28,16 +28,6 @@ class CardDeckDetail extends PureComponent {
   render() {
     const { title, questions, navigation } = this.props
 
-    const styles = {
-      buttonStyle: {
-        borderRadius: 0,
-        marginLeft: 0,
-        marginRight: 0,
-        marginBottom: 0,
-      },
-    }
-
-
     return (
       <CardContainer>
         <HeaderContainer>
