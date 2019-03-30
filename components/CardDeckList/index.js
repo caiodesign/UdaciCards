@@ -2,13 +2,12 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {
-  Text,
   View,
   FlatList,
   TouchableOpacity,
 } from 'react-native'
-import { Badge, Card } from 'react-native-elements'
-import { fetchDeckDB } from '../actions'
+import { fetchDeckDB } from '../../actions'
+import { CardContainer, Card, Title, SubTitle } from './styled'
 
 
 const styles = {
@@ -46,20 +45,12 @@ class CardDeckList extends PureComponent {
           },
         )}
       >
-        <View>
-          <Card
-            title={title}
-            subtitle={`${questions.length} cards`}
-          >
-            <Badge
-              containerStyle={{ backgroundColor: 'lightblue' }}
-            >
-              <Text>
-                {`${questions.length} cards`}
-              </Text>
-            </Badge>
+        <CardContainer>
+          <Card>
+            <Title>{title} </Title>
+            <SubTitle> {`${questions.length} cards`}</SubTitle>
           </Card>
-        </View>
+        </CardContainer>
       </TouchableOpacity>
     )
   }
@@ -69,14 +60,19 @@ class CardDeckList extends PureComponent {
 
     return (
       <View style={styles.containerStyle}>
-        {DBdata.length > 0
+        {DBdata.length
           ? (
             <FlatList
               data={DBdata}
               renderItem={this.renderItem}
             />
           )
-          : <Card title="Create" />
+          : (
+            <Card>
+              <Title>Create a new deck</Title>
+              <SubTitle>:)</SubTitle>
+            </Card>
+          )
         }
       </View>
     )
