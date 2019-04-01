@@ -5,10 +5,10 @@ import {
   Card,
   Button,
   FormLabel,
-  FormInput,
   FormValidationMessage,
 } from 'react-native-elements'
-import { addCardToDeck } from '../utils/api'
+import { addCardToDeck } from '../../utils/api'
+import { Input } from './styled'
 
 
 class AddDeck extends PureComponent {
@@ -63,12 +63,12 @@ class AddDeck extends PureComponent {
       >
         <Card title="Add a Card">
           <FormLabel>Question:</FormLabel>
-          <FormInput
+          <Input
             onChangeText={questionText => this.setState({ questionText })}
             value={titleText}
           />
           <FormLabel>Answer:</FormLabel>
-          <FormInput
+          <Input
             onChangeText={answerText => this.setState({ answerText })}
             value={titleText}
           />

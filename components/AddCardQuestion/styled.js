@@ -11,6 +11,10 @@ export const HeaderContainer = styled(CardContainer)`
   max-height: 200;
 `
 
+export const Input = styled.TextInput`
+  border: 0;
+`
+
 export const Title = styled.Text`
   font-size: 20px;
   color: #040F16;

@@ -19,9 +19,9 @@ export const Title = styled.Text`
 
 export const SubTitle = styled.Text`
   font-size: 14px;
-  font-weight: lighter;
+  font-weight: 100;
   color: #040F16;
-  opacity: .7
+  opacity: .7;
   margin-top: 5px;
 `
 

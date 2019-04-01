@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { View } from 'react-native'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import ReduxThunk from 'redux-thunk'
 
@@ -19,7 +19,12 @@ export default class App extends PureComponent {
   }
 
   render() {
-    const store = createStore(reducer, {}, applyMiddleware(ReduxThunk))
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+    const store = createStore(
+      reducer,
+      composeEnhancers(applyMiddleware(ReduxThunk)),
+    )
 
     return (
       <Provider store={store}>
