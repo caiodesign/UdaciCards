@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { fetchDeckDB } from '../../actions'
-import { CardContainer, Card, Title, SubTitle } from './styled'
+import { Card, Title, SubTitle } from './styled'
 
 
 const styles = {
@@ -45,12 +45,10 @@ class CardDeckList extends PureComponent {
           },
         )}
       >
-        <CardContainer>
-          <Card>
-            <Title>{title} </Title>
-            <SubTitle> {`${questions.length} cards`}</SubTitle>
-          </Card>
-        </CardContainer>
+        <Card>
+          <Title>{title} </Title>
+          <SubTitle> {`${questions.length} cards`}</SubTitle>
+        </Card>
       </TouchableOpacity>
     )
   }
