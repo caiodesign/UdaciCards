@@ -15,7 +15,6 @@ class CardDeckDetail extends PureComponent {
 
   componentDidUpdate() {
     const { getCardDeckDetails: getDeck, navigation } = this.props
-    console.log('here', navigation.state.params.entryId)
     getDeck(navigation.state.params.entryId)
   }
 
