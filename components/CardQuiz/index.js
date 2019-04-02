@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 
-import { Card } from 'react-native-elements'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { clearStorage, setLocalNotification } from '../../utils/helpers'
 import { CardContainer, Button, ButtonTitle, ButtonContainer, Title, SubTitle, HeaderContainer } from './styled'
