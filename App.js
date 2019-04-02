@@ -10,6 +10,13 @@ import { setLocalNotification, getTomorrowDay } from './utils/helpers'
 import { AppContainer } from './stack'
 import StatusBar from './StatusBar'
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(
+  reducer,
+  composeEnhancers(applyMiddleware(ReduxThunk)),
+)
+
 export default class App extends PureComponent {
 
   componentDidMount() {
@@ -19,13 +26,6 @@ export default class App extends PureComponent {
   }
 
   render() {
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
-    const store = createStore(
-      reducer,
-      composeEnhancers(applyMiddleware(ReduxThunk)),
-    )
-
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }}>

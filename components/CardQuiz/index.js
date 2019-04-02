@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { PureComponent } from 'react'
 
 import { View } from 'react-native'
 import { NavigationActions } from 'react-navigation'
@@ -7,7 +7,7 @@ import { clearStorage, setLocalNotification } from '../../utils/helpers'
 import { CardContainer, Button, ButtonTitle, ButtonContainer, Title, SubTitle, HeaderContainer } from './styled'
 
 
-class CardQuiz extends React.Component {
+class CardQuiz extends PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     const title = navigation.state.params.navTitle
