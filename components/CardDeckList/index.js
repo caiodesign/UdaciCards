@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { fetchDeckDB } from '../../actions'
+import { getDecks } from '../../utils/api'
 import { Card, Title, SubTitle } from './styled'
 
 
@@ -19,16 +20,28 @@ const styles = {
 
 class CardDeckList extends PureComponent {
 
-  componentDidMount() {
-    const { fetchDeckDB: getDeckDb } = this.props
-
-    return getDeckDb()
+  state = {
+    decks: [],
   }
 
-  componentDidUpdate() {
-    const { fetchDeckDB: getDeckDb } = this.props
+  componentDidMount = async () => {
+    const { updateDecks } = this.props
+    const storageDecks = await getDecks()
+    const userDecks = updateDecks(storageDecks)
 
-    return getDeckDb()
+    this.setState({
+      decks: userDecks.payload,
+    })
+  }
+
+  componentDidUpdate = (props) => {
+    const { decks: { decks } } = this.props
+
+    if (decks !== props.decks.decks) {
+      this.setState({
+        decks: props.decks.decks,
+      })
+    }
   }
 
   renderItem = ({ item }) => {
@@ -54,14 +67,14 @@ class CardDeckList extends PureComponent {
   }
 
   render() {
-    const { DBdata } = this.props
+    const { decks } = this.state
 
     return (
       <View style={styles.containerStyle}>
-        {DBdata.length
+        {decks
           ? (
             <FlatList
-              data={DBdata}
+              data={decks}
               renderItem={this.renderItem}
             />
           )
@@ -78,10 +91,10 @@ class CardDeckList extends PureComponent {
 
 }
 
-const mapStateToProps = (state) => {
-  const { decks } = state
+const mapStateToProps = reducer => ({ ...reducer })
 
-  return { DBdata: decks }
-}
+const mapDispatchToProps = dispatch => ({
+  updateDecks: decks => dispatch(fetchDeckDB(decks)),
+})
 
-export default connect(mapStateToProps, { fetchDeckDB })(CardDeckList)
+export default connect(mapStateToProps, mapDispatchToProps)(CardDeckList)

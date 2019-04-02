@@ -2,31 +2,39 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { CardContainer, Button, ButtonTitle, ButtonContainer, Title, SubTitle, HeaderContainer } from './styled'
+import { deleteDeckFromStorage, getCard } from '../../utils/api'
 import { getCardDeckDetails, deleteDeck } from '../../actions'
 
-class CardDeckDetail extends PureComponent {
+class CardDeckDetailComponent extends PureComponent {
 
   static navigationOptions = ({ navigation }) => navigation.state.params.navTitle
 
-  componentDidMount() {
-    const { getCardDeckDetails: getDeck, navigation } = this.props
-    getDeck(navigation.state.params.entryId)
+  componentDidMount = async () => {
+    const { navigation, getCardDeckDetails: getCardAction } = this.props
+    const getDeckCards = await getCard(navigation.state.params.entryId)
+
+    return getCardAction(getDeckCards)
   }
 
-  componentDidUpdate() {
-    const { getCardDeckDetails: getDeck, navigation } = this.props
-    getDeck(navigation.state.params.entryId)
+  componentDidUpdate(props) {
+    // const { getCardDeckDetails: getDeck, navigation } = this.props
+    // getDeck(navigation.state.params.entryId)
+    console.log('did', this.props)
+    console.log('update', props)
   }
 
-  deleteItem() {
-    const { title, deleteDeck: delDeck, navigation } = this.props
+  deleteItem = async () => {
+    const { CardDeckDetail: { title }, navigation, deleteDeck: deleteDeckAction } = this.props
+    const del = await deleteDeckFromStorage(title)
 
-    delDeck(title)
+    deleteDeckAction(del)
+
     navigation.goBack()
   }
 
   render() {
-    const { title, questions, navigation } = this.props
+    const { navigation, CardDeckDetail } = this.props
+    const { title, questions } = CardDeckDetail
 
     return (
       <CardContainer>
@@ -77,21 +85,11 @@ class CardDeckDetail extends PureComponent {
 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = reducer => ({ ...reducer })
 
-  if (state.CardDeckDetail) {
-    const { title, questions } = state.CardDeckDetail
+const mapDispatchToProps = dispatch => ({
+  deleteDeck: deck => dispatch(deleteDeck(deck)),
+  getCardDeckDetails: deck => dispatch(getCardDeckDetails(deck)),
+})
 
-    return { title, questions }
-  }
-
-}
-
-
-export default connect(
-  mapStateToProps,
-  {
-    deleteDeck,
-    getCardDeckDetails,
-  },
-)(CardDeckDetail)
+export default connect(mapStateToProps, mapDispatchToProps)(CardDeckDetailComponent)

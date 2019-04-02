@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native'
 
-export const getDecks = () => (
+export const getDecks = async () => (
   AsyncStorage.getAllKeys().then(keys => (
     AsyncStorage.multiGet(keys).then(stores => (
       stores.map((result, i, store) => {
@@ -26,6 +26,11 @@ export const getDecks = () => (
   ))
 )
 
+export const deleteDeckFromStorage = async removeTitle => (
+  AsyncStorage.removeItem(removeTitle)
+    .then(getDecks())
+    .catch(err => console.log(err))
+)
 
 export const getDeck = id => AsyncStorage.getItem(id)
 
@@ -38,6 +43,8 @@ export const saveDeckTitle = (title) => {
 
   return false
 }
+
+export const getCard = id => getDeck(id)
 
 export const addCardToDeck = (title, card) => {
   try {
