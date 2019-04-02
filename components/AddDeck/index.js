@@ -4,13 +4,8 @@ import {
   KeyboardAvoidingView,
   Keyboard,
 } from 'react-native'
-import {
-  Button,
-  Card,
-  FormInput,
-  FormValidationMessage,
-} from 'react-native-elements'
-import { saveDeckTitle } from '../utils/api'
+import { Input, ButtonContainer, Button, ButtonTitle, Label, CardContainer, ErrorText } from './styled'
+import { saveDeckTitle } from '../../utils/api'
 
 
 export default class AddDeck extends PureComponent {
@@ -55,21 +50,23 @@ export default class AddDeck extends PureComponent {
         }}
         behavior="padding"
       >
-        <Card title="Deck title">
-          <FormInput
+
+        <CardContainer>
+          <Label>Deck name:</Label>
+          <Input
             onChangeText={event => this.setState({ titleText: event })}
             value={titleText}
           />
-          <FormValidationMessage>
+          <ErrorText>
             {error ? 'This field is required' : ''}
-          </FormValidationMessage>
-          <Button
-            title="Create Deck"
-            raised
-            backgroundColor="rgb(72, 149, 236)"
-            onPress={this.handleSubmit}
-          />
-        </Card>
+          </ErrorText>
+          <ButtonContainer>
+            <Button onPress={this.handleSubmit} color="dark">
+              <ButtonTitle color="lighter">Add Deck</ButtonTitle>
+            </Button>
+          </ButtonContainer>
+        </CardContainer>
+
       </KeyboardAvoidingView>
     )
   }

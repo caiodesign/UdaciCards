@@ -1,14 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react'
 import { KeyboardAvoidingView, Keyboard } from 'react-native'
-import {
-  Card,
-  Button,
-  FormLabel,
-  FormValidationMessage,
-} from 'react-native-elements'
 import { addCardToDeck } from '../../utils/api'
-import { Input } from './styled'
+import { Input, ButtonContainer, Button, ButtonTitle, Label, CardContainer, ErrorText } from './styled'
 
 
 class AddDeck extends PureComponent {
@@ -61,27 +55,26 @@ class AddDeck extends PureComponent {
         }}
         behavior="padding"
       >
-        <Card title="Add a Card">
-          <FormLabel>Question:</FormLabel>
+        <CardContainer>
+          <Label>Question:</Label>
           <Input
             onChangeText={questionText => this.setState({ questionText })}
             value={titleText}
           />
-          <FormLabel>Answer:</FormLabel>
+          <Label>Answer:</Label>
           <Input
             onChangeText={answerText => this.setState({ answerText })}
             value={titleText}
           />
-          <FormValidationMessage>
+          <ErrorText>
             {error ? 'Both fields are required' : ''}
-          </FormValidationMessage>
-          <Button
-            title="Submit"
-            raised
-            backgroundColor="rgb(72, 149, 236)"
-            onPress={this.handleSubmit}
-          />
-        </Card>
+          </ErrorText>
+          <ButtonContainer>
+            <Button onPress={this.handleSubmit} color="dark">
+              <ButtonTitle color="lighter">Add Card</ButtonTitle>
+            </Button>
+          </ButtonContainer>
+        </CardContainer>
       </KeyboardAvoidingView>
     )
   }

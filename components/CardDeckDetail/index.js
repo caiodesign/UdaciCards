@@ -63,7 +63,7 @@ class CardDeckDetail extends PureComponent {
               )
             }}
           >
-            <ButtonTitle color="dark">AddCard</ButtonTitle>
+            <ButtonTitle color="dark">Add Card</ButtonTitle>
           </Button>
         </ButtonContainer>
         <ButtonContainer>

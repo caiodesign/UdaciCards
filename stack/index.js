@@ -26,6 +26,16 @@ const Tabs = createBottomTabNavigator({
       tabBarIcon: ({ tintColor }) => <Ionicons name="md-add-circle-outline" size={30} color={tintColor} />,
     },
   },
+}, {
+  tabBarOptions: {
+    activeTintColor: '#e91e63',
+    labelStyle: {
+      fontSize: 10,
+    },
+    tabStyle: {
+      paddingTop: 7,
+    },
+  },
 })
 
 const MainNavigator = createStackNavigator({
